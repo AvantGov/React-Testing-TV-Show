@@ -31,6 +31,7 @@ export default function App() {
     // * new definition of the return promise after isolating in api directory:
     fetchShow()
       .then((response) => {
+        console.log(response)
         setShow(response.data);
         setSeasons(formatSeasons(response.data._embedded.episodes));
       })
@@ -41,7 +42,7 @@ export default function App() {
   };
 
   if (!show) {
-    return <h2>Fetching data...</h2>;
+    return <h2>Fetching data</h2>;
   }
 
   return (

@@ -7,10 +7,10 @@ export const fetchShow = () => {
           "https://api.tvmaze.com/singlesearch/shows?q=stranger-things&embed=episodes"
         )
         .then(response => {
-          return response;
+            // console.log('api response:', response)
+            return response;
+          
         })
-        .catch((error) => {
-            return error;
-        })
+
 };
 
