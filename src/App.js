@@ -5,7 +5,7 @@ import parse from "html-react-parser";
 
 import { formatSeasons } from "./utils/formatSeasons";
 
-import { fetchShow } from './api/fetchShow';
+import { getData } from './api/getData';
 
 import Episodes from "./components/Episodes";
 import "./styles.css";
@@ -29,9 +29,12 @@ export default function App() {
     // };
 
     // * new definition of the return promise after isolating in api directory:
+    const fetchShow = () => {
+      return getData()
+    } 
+
     fetchShow()
       .then((response) => {
-        console.log(response)
         setShow(response.data);
         setSeasons(formatSeasons(response.data._embedded.episodes));
       })

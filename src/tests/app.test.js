@@ -8,7 +8,7 @@ import App from '../App'
 
 // * extras: 
 
-import { fetchShow as mockFetchShow } from '../api/fetchShow';
+
 
 const response = {
     id: 2993,
@@ -609,9 +609,6 @@ const response = {
     }
   }
 
-jest.mock('../api/fetchShow.js')
-
-
 
 
 
@@ -624,18 +621,8 @@ test('app renders properly before the async call', () => {
     getByText(/Fetching data/i);
 })
 
-// test('app renders components after the async call', async () => {
 
-//     mockFetchShow.mockResolvedValueOnce(response);
 
-//     const { getByText, getAllByText, queryAllByText } = render( 
-//         <App />
-//     )
-
-//     await wait(() => {
-//         getByText(/Stranger Things/i)
-//     })
-// })
 
 
 
