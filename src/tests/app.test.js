@@ -8,6 +8,9 @@ import App from '../App'
 
 // * extras: 
 
+import { fetchShow as mockFetchShow } from '../api/getData';
+
+jest.mock('../api/getData');
 
 
 const response = {
@@ -610,8 +613,6 @@ const response = {
   }
 
 
-
-
 test('app renders properly before the async call', () => {
 
     const { getByText  } = render( 
@@ -620,6 +621,22 @@ test('app renders properly before the async call', () => {
 
     getByText(/Fetching data/i);
 })
+
+// test(' index ', async () => {
+   
+//   mockFetchShow.mockResolvedValueOnce(response);
+  
+//   const { getByText } = render(
+//     <App />
+//    )
+
+//   expect(getByText(/Fetching data/i)).toBeTruthy();
+
+//   await wait(() => {
+//     getByText(/select/i);
+//   })
+
+// })
 
 
 

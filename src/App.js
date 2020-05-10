@@ -30,15 +30,23 @@ export default function App() {
 
     // * new definition of the return promise after isolating in api directory:
     const fetchShow = () => {
-      return getData()
+      return getData();
     } 
 
     fetchShow()
       .then((response) => {
+        console.log('this:',response)
         setShow(response.data);
         setSeasons(formatSeasons(response.data._embedded.episodes));
       })
+      .catch((error) => {
+        console.log('error  message:', error.message);
+      })
   }, []);
+
+
+
+
 
   const handleSelect = e => {
     setSelectedSeason(e.value);
