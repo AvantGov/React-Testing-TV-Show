@@ -629,6 +629,4 @@ test('renders fetching data message on initial mounting', () =>  {
 //     await waitFor(() => {
 //         expect(getByTestId(header).toBeVisible())
 //     })
-
-
 // })
