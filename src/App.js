@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Dropdown from "react-dropdown";
 import parse from "html-react-parser";
 
 import { formatSeasons } from "./utils/formatSeasons";
+import { fetchShow } from './utils/api'
 
 import Episodes from "./components/Episodes";
-import "./styles.css";
+// import './styles.css'
 
 export default function App() {
   const [show, setShow] = useState(null);
@@ -16,7 +16,18 @@ export default function App() {
 
   useEffect(() => {
     
-    fetchShow();
+    fetchShow()
+      .then(res => {
+        console.log("from fetch show:", res)
+        console.log('from fetch show resres.data:', res.data)
+        setShow(res.data);
+        setSeasons(formatSeasons(res.data._embedded.episodes));
+      })
+      .catch((error) => {
+        console.log("from fetch show:", error)
+      }); 
+    
+
   }, []);
 
   const handleSelect = e => {
@@ -24,21 +35,22 @@ export default function App() {
   };
 
   if (!show) {
-    return <h2>Fetching data...</h2>;
+    return <h2 data-testid='fetching'>Fetching data...</h2>;
   }
 
   return (
     <div className="App">
-      <img className="poster-img" src={show.image.original} alt={show.name} />
-      <h1>{show.name}</h1>
+      {/* <img className="poster-img" src={show.image.original} alt={show.name} /> */}
+      <h1 data-testid='header'>{show.name}</h1>
       {parse(show.summary)}
       <Dropdown
+        data-testid='dropdown'
         options={Object.keys(seasons)}
         onChange={handleSelect}
         value={selectedSeason || "Select a season"}
         placeholder="Select an option"
       />
-      <Episodes episodes={episodes} />
+      <Episodes data-testid='episode-list' episodes={episodes} />
     </div>
   );
 }
